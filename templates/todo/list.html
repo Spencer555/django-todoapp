@@ -1,0 +1,61 @@
+{% extends "todo/base.html" %} {% block content %}
+
+
+<h1 class="mb-3 text-center">Todo's by
+ {% if user.is_authenticated %} 
+{{user.username|capfirst}}
+{% endif %} 
+({{ page_obj.paginator.count }})</h1>
+
+
+  {% for todo in todos %}
+
+
+          <a  style='text-decoration:none; color:#000' href="{% url 'detail_todo' todo.slug todo.todo_id%}">
+  
+    <div class="col-10 m-auto mb-4 ">
+      <div class="card text-left w-100">
+        <div class="card-body">
+          <h5 class="card-title">Username: &nbsp{{todo.user.username|capfirst}}</h5>
+          <p class="card-text">Task: &nbsp{{todo.task|capfirst}}</p>
+          <p class="card-text"><small class="text-muted">Date Added :{{ todo.time_created|date:"F d, Y" }}</small></p>
+        </div>
+      </div>
+    </div>
+  </a>
+   
+
+
+   
+{% endfor %}
+
+</div>
+
+<div style='text-align:center; color:#303633'>
+
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a style='background-color:#303633; color:#fff' class="btn btn-outline-success mb-4" href="?page=1">First</a>
+        <a style='background-color:#303633; color:#fff' class="btn btn-outline-success mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a style='background-color:#303633; color:#fff' class="btn btn-success mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a style='background-color:#303633; color:#fff' class="btn btn-outline-success mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a style='background-color:#303633; color:#fff' class="btn btn-outline-success mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a style='background-color:#303633; color:#fff' class="btn btn-outline-success mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+    </div>
+    {% endblock content %}
+
+
+

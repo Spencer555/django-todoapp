@@ -1,0 +1,27 @@
+{% extends "todo/base.html" %} {% block content %}
+    <div class="col-10 m-auto mb-4 ">
+    <p class='mb-4 p-2'> <a href="{% url 'list_todo' %}"> Back </a> </p>
+      <div class="card text-left">
+      
+        <div class="card-body">
+          <h5 class="card-title">Username: &nbsp{{todos.user.username|capfirst}}</h5>
+          <p class="card-text">Task: &nbsp{{todos.task|capfirst}}</p>
+          <p class="card-text"><small class="text-muted">Date Added :{{ todos.time_created|date:"F d, Y" }}</small></p>
+                  {% if todos.user == user %}
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-outline-success  btn-sm  mt-1 mb-1" href="{% url 'update_todo' todos.slug todos.todo_id %}">Update</a>
+
+
+            <a class="btn btn-outline-danger  btn-sm mt-1 mb-1" href="{% url 'delete_todo' todos.slug todos.todo_id %}">Delete</a>
+        </div>
+        {% endif %}
+
+
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+</article>
+{% endblock content %}

@@ -1,0 +1,78 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    {% load static %}
+
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" /> {% if title %}
+        <title>TodoAPP - {{ title }}</title>
+        {% else %}
+        <title>TodoAPP</title>
+        {% endif %}
+
+    </head>
+
+    <body style="background-color: #e4e4e4">
+        <header>
+            <nav class="navbar navbar-expand-sm" style="background-color: #090446;">
+
+                <div class="container-fluid">
+                    <a class="navbar-brand text-white" href="{% url 'list_todo' %}">TodoApp</a>
+                    
+                    <button class="navbar-toggler" type="button" style="background-color:#fff" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" style="color:#fff" ></span>
+                  </button>
+
+
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'create_todo' %}" style=" color:#ffffff">Add Task</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'list_todo' %}" style=" color:#ffffff">Todo's</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}" style=" color:#ffffff">Logout</a>
+                            </li>
+
+                            {% else %}
+                            <li class="nav-item" style="margin-left: auto;">
+                                <a class="nav-link" href="{% url 'register' %}" style=" color:#ffffff">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}" style=" color:#ffffff">Login</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="row">
+                <div class="col-md-8 m-auto mt-4">
+                    {% if messages %} {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %} {% endif %} 
+
+                    <div class="col-md-8 m-auto col-xs-10"> 
+                        {% block content %}{% endblock %}
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="{% static 'bootstrap/js/jquery-3.6.0.slim.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    </body>
+
+    </html>
