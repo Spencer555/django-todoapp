@@ -27,7 +27,7 @@ class CreateTodoView(LoginRequiredMixin, CreateView):
     model = Todo 
     fields = ['task']
     template_name = 'todo/create.html'
-    success_url = '/todo/'
+    success_url = '/'
 
 
     def form_valid(self, form):
@@ -45,7 +45,7 @@ class DetailTodoView(LoginRequiredMixin, DetailView):
 class UpdateTodoView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Todo 
     template_name = 'todo/update.html'
-    success_url = '/todo/'
+    success_url = '/'
     fields = ['task']
     context_object_name = 'todos'
 
@@ -65,7 +65,7 @@ class UpdateTodoView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class DeleteTodoView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Todo
-    success_url = '/todo/'
+    success_url = '/'
     template_name = 'todo/delete.html'
     context_object_name = 'todos'
 
