@@ -25,7 +25,7 @@ SECRET_KEY = '!@#!#$%$^&&*(*&(^(*&^(SDGDHDBVCXCZXnk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://spl-django-todoapp.herokuapp.com/']
+ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
