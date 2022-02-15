@@ -20,10 +20,11 @@
             <nav class="navbar navbar-expand-sm" style="background-color: #090446;">
 
                 <div class="container-fluid">
-                    <a class="navbar-brand text-white" href="{% url 'list_todo' %}">TodoApp</a>
+                    <a class="navbar-brand text-white" href="{% url 'list_todo' %}" style="border :2px white dotted; padding:0.5em">TodoApp</a>
                     
-                    <button class="navbar-toggler" type="button" style="background-color:#fff" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon" style="color:#fff" ></span>
+                    <button class="navbar-toggler navbar-dark"
+                    style="border :1px solid white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon navbar-light" ></span>
                   </button>
 
 
@@ -41,7 +42,7 @@
                             </li>
 
                             {% else %}
-                            <li class="nav-item" style="margin-left: auto;">
+                            <li class="nav-item" >
                                 <a class="nav-link" href="{% url 'register' %}" style=" color:#ffffff">Register</a>
                             </li>
                             <li class="nav-item">
